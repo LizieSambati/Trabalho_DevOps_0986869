@@ -36,10 +36,18 @@ pipeline {
         stage('testes') {
             steps {
                 script {
-			        echo 'testes...'
-                    echo 'cadastro de aluno'
-                    sh 'source venv/bin/activate || true'
-                    sh 'pytest tests/test_cadastro_aluno.py --maxfail=1 --disable-warnings'
+			        echo 'Testes...'
+                    echo 'Teste de cadastro de aluno...'
+                    dir("${WORKSPACE}") {
+                        sh '''
+                        if [ ! -d "venv" ]; then
+                            python3 -m venv venv  # Criar ambiente virtual
+                        fi
+                        . venv/bin/activate
+                        pip install -r app-flask/requirements.txt
+                        pytest tests/test_cadastro_aluno.py --maxfail=1 --disable-warnings
+                        '''
+                    }
                 }
             }
         }
