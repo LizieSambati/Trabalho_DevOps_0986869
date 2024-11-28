@@ -33,18 +33,19 @@ pipeline {
             }
         }
 
-        stage('testes') {
+        stage('Testes') {
             steps {
                 script {
-			        echo 'Testes...'
-                    echo 'Teste de cadastro de aluno...'
+                    echo 'Executando testes...'
                     dir("${WORKSPACE}") {
+                        echo 'teste cadastro aluno'
                         sh '''
                         if [ ! -d "venv" ]; then
-                            python3 -m venv venv  # Criar ambiente virtual
+                            python3 -m venv venv
                         fi
                         . venv/bin/activate
-                        pip install -r app-flask/requirements.txt
+                        export PYTHONPATH=$PYTHONPATH:${WORKSPACE}
+                        pip install -r app_flask/requirements.txt
                         pytest tests/test_cadastro_aluno.py --maxfail=1 --disable-warnings
                         '''
                     }

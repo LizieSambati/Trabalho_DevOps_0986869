@@ -3,12 +3,8 @@ import sys
 import os
 sys.path.append('/var/lib/jenkins/workspace/aluno')
 # sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from flask.app import app, db, Aluno
+from app_flask.app import app, db, Aluno
 
-@pytest.fixture
-def app():
-    from flask.app import app  # Importação dentro da função, evitando o ciclo
-    return app
 
 def client():
     # Configura o app para testes
