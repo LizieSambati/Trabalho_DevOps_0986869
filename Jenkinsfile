@@ -21,7 +21,7 @@ pipeline {
             }
         }
 
-        stage('Build Inicial') {
+        stage('build Inicial') {
             steps {
                 script {
                     echo 'Executando build inicial...'
@@ -33,7 +33,7 @@ pipeline {
             }
         }
 
-        stage('Testes') {
+        stage('testes') {
             steps {
                 script {
                     echo 'Executando testes...'
