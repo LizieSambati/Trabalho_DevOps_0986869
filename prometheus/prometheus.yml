@@ -10,6 +10,6 @@ scrape_configs:
     static_configs:
       - targets: ['mysqld_exporter:9104']  # Definição do alvo para coletar métricas do MySQL Exporter
 
-  - job_name: 'app_flask_exporter'  # Aplicação Flask
+  - job_name: 'appflask_exporter'  # Aplicação Flask
     static_configs:
       - targets: ['flask:5000']  # Alvo: sua aplicação Flask

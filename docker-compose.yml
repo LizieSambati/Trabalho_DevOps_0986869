@@ -3,7 +3,7 @@ version: '3.7'
 services:
   flask:
     build:
-      context: ./app_flask
+      context: ./appflask
       dockerfile: Dockerfile_flask
     ports:
       - "5000:5000"
@@ -40,8 +40,8 @@ services:
     ports:
       - "9104:9104"
     environment:
-      DATA_SOURCE_NAME: "user:password@(mariadb:3306)/"
-      # DATA_SOURCE_NAME: "flask_user:flask_password@(mariadb:3306)/school_db"
+      # DATA_SOURCE_NAME: "user:password@(mariadb:3306)/"
+      DATA_SOURCE_NAME: "flask_user:flask_password@(mariadb:3306)/school_db"
     depends_on:
       - mariadb
 
