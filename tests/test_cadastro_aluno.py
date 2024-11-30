@@ -1,7 +1,13 @@
 import sys
 sys.path.append('/var/lib/jenkins/workspace/aluno')
+<<<<<<< HEAD
 sys.path.insert(0, '/usr/local/lib/python3.12/site-packages')
 from appflask import app, db, Aluno
+=======
+# sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from flask import Flask, request, jsonify, Response
+from app import app, db, Aluno
+>>>>>>> 86bd5a6 (conexão DB)
 
 site_packages_path = site.getsitepackages()[0]
 if site_packages_path not in sys.path:
