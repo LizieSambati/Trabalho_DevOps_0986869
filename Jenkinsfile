@@ -38,20 +38,21 @@ pipeline {
                 script {
                     echo 'Executando testes...'
                     dir("${WORKSPACE}") {
-                        echo 'teste cadastro aluno'
+                        echo 'Teste cadastro aluno'
                         sh '''
                         if [ ! -d "venv" ]; then
                             python3 -m venv venv
                         fi
                         . venv/bin/activate
                         export PYTHONPATH=$PYTHONPATH:${WORKSPACE}
-                        pip install -r appflask/requirements.txt
+                        pip install -r flask/requirements.txt
                         pytest tests/test_cadastro_aluno.py --maxfail=1 --disable-warnings
                         '''
                     }
                 }
             }
         }
+
 
         stage('build') {
             steps {

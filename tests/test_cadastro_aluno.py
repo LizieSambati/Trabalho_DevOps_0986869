@@ -3,7 +3,8 @@ import sys
 import os
 sys.path.append('/var/lib/jenkins/workspace/aluno')
 # sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from appflask.app import app, db, Aluno
+from flask import Flask, request, jsonify, Response
+from app import app, db, Aluno
 
 
 def client():
