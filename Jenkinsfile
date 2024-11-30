@@ -44,8 +44,8 @@ pipeline {
                             python3 -m venv venv
                         fi
                         . venv/bin/activate
-                        export PYTHONPATH=$PYTHONPATH:${WORKSPACE}
-                        pip install -r flask/requirements.txt
+                        export PYTHONPATH=$PYTHONPATH:/var/lib/jenkins/workspace/aluno
+                        pip install -r appflask/requirements.txt
                         pytest tests/test_cadastro_aluno.py --maxfail=1 --disable-warnings
                         '''
                     }

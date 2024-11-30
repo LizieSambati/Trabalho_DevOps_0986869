@@ -1,11 +1,14 @@
-import pytest
 import sys
-import os
+import site
 sys.path.append('/var/lib/jenkins/workspace/aluno')
-# sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# sys.path.insert(0, '/usr/local/lib/python3.12/site-packages')
 from flask import Flask, request, jsonify, Response
-from app import app, db, Aluno
+from appflask import app, db, Aluno
 
+
+site_packages_path = site.getsitepackages()[0]
+if site_packages_path not in sys.path:
+    sys.path.insert(0, site_packages_path)
 
 def client():
     # Configura o app para testes
