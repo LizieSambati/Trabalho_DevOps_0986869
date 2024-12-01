@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    
+    environment {
+        COMPOSE_FILE = 'docker-compose.yml'
+    } 
 
     stages {
         stage('check') {
@@ -29,9 +33,11 @@ pipeline {
                         sh 'docker-compose down'
                         sh 'docker-compose up --build -d'
                     }
+                    sleep(time: 10, unit: 'SECONDS')
                 }    
             }
         }
+
 
         stage('testes') {
             steps {
@@ -39,19 +45,31 @@ pipeline {
                     echo 'Executando testes...'
                     dir("${WORKSPACE}") {
                         echo 'Teste cadastro aluno'
-                        sh '''
-                        if [ ! -d "venv" ]; then
-                            python3 -m venv venv
-                        fi
-                        . venv/bin/activate
-                        export PYTHONPATH=$PYTHONPATH:/var/lib/jenkins/workspace/aluno
-                        pip install -r appflask/requirements.txt
-                        pytest tests/test_cadastro_aluno.py --maxfail=1 --disable-warnings
-                        '''
+                        sh 'docker exec appflask pytest tests/test_cadastro_aluno.py --maxfail=1 --disable-warnings'
                     }
                 }
             }
         }
+
+        // stage('testes') {
+        //     steps {
+        //         script {
+        //             echo 'Executando testes...'
+        //             dir("${WORKSPACE}") {
+        //                 echo 'Teste cadastro aluno'
+        //                 sh '''
+        //                 if [ ! -d "venv" ]; then
+        //                     python3 -m venv venv
+        //                 fi
+        //                 . venv/bin/activate
+        //                 export PYTHONPATH=$PYTHONPATH:/var/lib/jenkins/workspace/aluno
+        //                 pip install -r appflask/requirements.txt
+        //                 pytest tests/test_cadastro_aluno.py --maxfail=1 --disable-warnings
+        //                 '''
+        //             }
+        //         }
+        //     }
+        // }
 
 
         stage('build') {
