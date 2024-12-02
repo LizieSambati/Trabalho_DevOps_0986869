@@ -4,34 +4,42 @@ pipeline {
     stages {
         stage('check') {
             steps {
-			echo 'subindo a aplicação'
-                }
+			    echo 'E aeeeee!'
+            }
         }
 
-	stage('git') {
-		steps {
-			script {
-			sh 'rm -rf Trabalho_DevOps_0986869'
-			sh 'git clone https://github.com/LizieSambati/Trabalho_DevOps_0986869.git'
-			dir('Trabalho_DevOps_0986869') {
-				sh 'git checkout main'
+	    stage('git') {
+		    steps {
+                script {
+                    echo 'Carregando git...'
+                    sh 'rm -rf Trabalho_DevOps_0986869'
+                    sh 'git clone https://github.com/LizieSambati/Trabalho_DevOps_0986869.git'
+                    dir('Trabalho_DevOps_0986869') {
+                        sh 'git checkout main'
                     }
                 }
             }
         }
 
-        stage('build inicial') {
+        stage('Build Inicial') {
             steps {
                 script {
-			echo 'build inicial'
-                }
+                    echo 'Executando build inicial...'
+                    dir("${WORKSPACE}") {
+                        sh 'docker-compose down'
+                        sh 'docker-compose up --build -d'
+                    }
+                }    
             }
         }
 
         stage('testes') {
             steps {
                 script {
-			echo 'testes'
+			        echo 'testes...'
+                    echo 'cadastro de aluno'
+                    sh 'source venv/bin/activate || true'
+                    sh 'pytest tests/test_cadastro_aluno.py --maxfail=1 --disable-warnings'
                 }
             }
         }
@@ -39,7 +47,7 @@ pipeline {
         stage('build') {
             steps {
                 script {
-			echo 'build'
+			        echo 'build...'
                 }
             }
         }
@@ -47,7 +55,7 @@ pipeline {
         stage('subindo ambiente') {
             steps {
                 script {
-			echo 'subindo o ambiente'
+			        echo 'Subindo o ambiente...'
                 }
             }
         }
@@ -55,7 +63,7 @@ pipeline {
         stage('deploy ambiente') {
             steps {
                 script {
-			echo 'deploy ambiente'
+			        echo 'deploy ambiente!'
                 }
             }
         }
