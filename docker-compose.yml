@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   flask:
-    container_name: appflask
+    container_name: flask
     build:
       context: ./flask
       dockerfile: Dockerfile_flask
@@ -33,19 +33,12 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
-<<<<<<< HEAD
-=======
     # depends_on:
     #   - mysqld_exporter
->>>>>>> 86bd5a6 (conexão DB)
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
     networks:
       - monitoring
-    # depends_on:
-    #   - mysqld_exporter
-
-<<<<<<< HEAD
     # mysqld_exporter:
     #   image: prom/mysqld-exporter
     #   ports:
@@ -54,17 +47,6 @@ services:
     #     DATA_SOURCE_NAME: "flask_user:flask_password@(mariadb:3306)/school_db"
     #   depends_on:
     #     - mariadb
-=======
-  # mysqld_exporter:
-  #   image: prom/mysqld-exporter
-  #   ports:
-  #     - "9104:9104"
-  #   environment:
-  #     # DATA_SOURCE_NAME: "user:password@(mariadb:3306)/"
-  #     DATA_SOURCE_NAME: "flask_user:flask_password@(mariadb:3306)/school_db"
-  #   depends_on:
-  #     - mariadb
->>>>>>> 86bd5a6 (conexão DB)
 
   grafana:
     build:

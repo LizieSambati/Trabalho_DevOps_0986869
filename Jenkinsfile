@@ -38,54 +38,18 @@ pipeline {
             }
         }
 
-
         stage('testes') {
             steps {
                 script {
                     echo 'Executando testes...'
                     dir("${WORKSPACE}") {
                         echo 'Teste cadastro aluno'
-<<<<<<< HEAD
-                        sh 'docker exec appflask pytest tests/test_cadastro_aluno.py --maxfail=1 --disable-warnings'
-=======
-                        sh '''
-                        if [ ! -d "venv" ]; then
-                            python3 -m venv venv
-                        fi
-                        . venv/bin/activate
-                        export PYTHONPATH=$PYTHONPATH:${WORKSPACE}
-                        pip install -r flask/requirements.txt
-                        pytest tests/test_cadastro_aluno.py --maxfail=1 --disable-warnings
-                        '''
->>>>>>> 86bd5a6 (conexão DB)
+                        sh 'docker exec flask pytest tests/test_cadastro_aluno.py --maxfail=1 --disable-warnings'
+
                     }
                 }
             }
         }
-
-<<<<<<< HEAD
-        // stage('testes') {
-        //     steps {
-        //         script {
-        //             echo 'Executando testes...'
-        //             dir("${WORKSPACE}") {
-        //                 echo 'Teste cadastro aluno'
-        //                 sh '''
-        //                 if [ ! -d "venv" ]; then
-        //                     python3 -m venv venv
-        //                 fi
-        //                 . venv/bin/activate
-        //                 export PYTHONPATH=$PYTHONPATH:/var/lib/jenkins/workspace/aluno
-        //                 pip install -r appflask/requirements.txt
-        //                 pytest tests/test_cadastro_aluno.py --maxfail=1 --disable-warnings
-        //                 '''
-        //             }
-        //         }
-        //     }
-        // }
-
-=======
->>>>>>> 86bd5a6 (conexão DB)
 
         stage('build') {
             steps {
