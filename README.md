@@ -30,3 +30,23 @@ Monitoramento com análises de logs de acesso por meio do Prometheus e dashboard
 9090 = Prometheus  
 
  ---
+
+#### *Iniciar aplicação*  
+*Limpar e remover todos os containers (caso necessário):*  
+`docker stop $(docker ps -aq) && docker rm $(docker ps -aq)`  
+
+*clonar o repositório:*  
+`git clone https://github.com/LizieSambati/Trabalho_DevOps_0986869.git`  
+
+*Subir containers:*  
+`docker-compose up --build -d`  
+
+Acessar Jenkins http://localhost:8080 para criar nova tarefa do tipo Pipeline com link do projeto: https://github.com/LizieSambati/Trabalho_DevOps_0986869.git  
+Acessar Grafana http://localhost:3000 para visualizar dashboards  
+*login: admin*  
+*password: admin*  
+
+*Parar aplicação:*  
+`sudo docker compose down`  
+
+---
