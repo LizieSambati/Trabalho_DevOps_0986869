@@ -41,12 +41,16 @@ Monitoramento com análises de logs de acesso por meio do Prometheus e dashboard
 *Subir containers:*  
 `docker-compose up --build -d`  
 
-Acessar Jenkins http://localhost:8080 para criar nova tarefa do tipo Pipeline com link do projeto: https://github.com/LizieSambati/Trabalho_DevOps_0986869.git  
-Acessar Grafana http://localhost:3000 para visualizar dashboards  
+Acessar Jenkins http://localhost:8080 para criar nova tarefa do tipo Pipeline com link do projeto, em seguida, ir para Construir agora.  
+Acessar Grafana http://localhost:3000 para visualizar dashboards.  
 *login: admin*  
 *password: admin*  
 
 *Parar aplicação:*  
 `sudo docker compose down`  
+
+---
+
+TADS - 2024 - DEVOPS
 
 ---
